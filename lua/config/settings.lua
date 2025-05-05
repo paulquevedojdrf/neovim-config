@@ -71,6 +71,8 @@ vim.keymap.set('i', '<C-l>', '/*************************************************
 -- Insert a block header comment
 vim.keymap.set('i', '<C-b>', '/*******************************************************************************\n\x0d\x08\x08\x08 *\n\x08\x08\x08 *******************************************************************************/', { noremap = true })
 
+-- Global renaming of text under the cursor
+vim.keymap.set('n', 'gr', [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { noremap = true, silent = false })
 
 -- Map ctrl+j to accept a copilot suggestion; disable use of tab to accept
 vim.g.copilot_no_tab_map = true

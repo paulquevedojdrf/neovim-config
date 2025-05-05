@@ -42,6 +42,17 @@ return {
                 { name = "buffer" },
                 { name = "path" },
             }),
+            enabled = function()
+                local context = require("cmp.config.context")
+                -- keep command mode completion enabled when cursor is in a comment
+                if vim.api.nvim_get_mode().mode == "c" then
+                    return true
+                end
+                -- Disable suggestions when typing out comments
+                return not context.in_treesitter_capture("comment") and
+                       not context.in_syntax_group("Comment") and
+                       not context.in_syntax_group("cComment")
+            end,
         })
 
         vim.cmd([[
