@@ -44,6 +44,20 @@ o.numberwidth = 6 -- Set the width of the number column to 6 characters
 o.list = true -- Show whitespace characters
 o.listchars = { tab = "▸ ", trail = "·" } -- Show whitespace characters
 
+-- Status line
+-------------------------------------------------------------------------------------------------------
+o.statusline = table.concat({
+  "%{fugitive#statusline()}",        -- Git info from Fugitive
+  " %<%F%*",                          -- Full path, truncate if too long
+  "%m%*",                             -- Modified flag
+  "%=%P ",                            -- Percentage through file
+  "%1*%5l%*",                         -- Current line number
+  "%2*/%L%*",                         -- Total lines
+  "%4v%*",                            -- Virtual column number
+  "  %{&ff}%*",                       -- File format
+  "%y%*"                              -- File type
+})
+
 -- Keymaps
 -------------------------------------------------------------------------------------------------------
 vim.keymap.set('n', '<F12>', ':vsplit<CR>', { noremap = true, silent = true })
