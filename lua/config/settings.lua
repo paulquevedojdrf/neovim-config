@@ -63,6 +63,8 @@ o.statusline = table.concat({
 vim.keymap.set('n', '<F12>', ':vsplit<CR>', { noremap = true, silent = true })
 vim.keymap.set("n", "<F9>", ":setlocal spell! spelllang=en_us<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<F3>", ":set invnumber<CR> :set invcursorline<CR>", { noremap = true, silent = true })
+-- More tolerant tag lookup instead of just jumping to first available option
+vim.keymap.set('n', '<C-]>', 'g<C-]>', { noremap = true })
 
 -- Insert a divider comment line
 vim.keymap.set('i', '<C-l>', '/******************************************************************************/', { noremap = true })
