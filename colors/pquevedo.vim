@@ -1,6 +1,7 @@
 runtime colors/default.vim
 
-highlight SpecialKey ctermfg=red guifg=red  " Set the color to red (or choose another)
+" Whitespace characters (Trailing spaces or tabs etc..)
+highlight Whitespace ctermfg=red guifg=red
 
 syn match Todo /FIXME/
 syn match Todo /TODO/
