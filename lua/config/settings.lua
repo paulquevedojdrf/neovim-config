@@ -43,6 +43,9 @@ o.hlsearch = true -- When on, all search patterns are highlighted.
 o.numberwidth = 6 -- Set the width of the number column to 6 characters
 o.list = true -- Show whitespace characters
 o.listchars = { tab = "▸ ", trail = "·" } -- Show whitespace characters
+o.encoding = 'utf-8' -- Set the encoding to UTF-8
+o.fileencoding = 'utf-8' -- Set the file encoding to UTF-8
+
 
 -- Status line
 -------------------------------------------------------------------------------------------------------
