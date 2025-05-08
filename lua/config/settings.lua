@@ -77,15 +77,6 @@ vim.keymap.set('i', '<C-b>', '/*************************************************
 -- Global renaming of text under the cursor
 vim.keymap.set('n', 'gr', [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { noremap = true, silent = false })
 
--- Map ctrl+j to accept a copilot suggestion; disable use of tab to accept
-vim.g.copilot_no_tab_map = true
-vim.keymap.set('i', '<C-j>', 'copilot#Accept("\\<CR>")', {
-    expr = true,
-    replace_keycodes = false
-})
-vim.keymap.set('i', '<M-]>', '<Plug>(copilot-next)') -- ALT+] go to next suggestion
-vim.keymap.set('i', '<M-[>', '<Plug>(copilot-previous)') -- ALT+[ go to previous suggestion
-
 -- Autocommands
 -------------------------------------------------------------------------------------------------------
 
