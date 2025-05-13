@@ -125,7 +125,7 @@ endfunction()
 function! UpdateHighlighting() abort
     let l:ft = &filetype
     let c_types = ['c','h','cpp','hpp']
-    let log_types = ['log','txt', '']
+    let log_types = ['log', '']
     if index(c_types, l:ft) >= 0 || index(log_types, l:ft) >= 0
         silent! TSDisable highlight
     else

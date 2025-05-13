@@ -2,14 +2,16 @@ local global = vim.g
 local o = vim.opt
 
 vim.cmd.colorscheme('pquevedo') -- ~/.config/nvim/colors
+vim.cmd("syntax enable") -- Enable syntax highlighting
+vim.cmd("filetype plugin indent on") -- Enable file type detection and plugins
 
 -- Editor options
 -------------------------------------------------------------------------------------------------------
 o.number = false -- Print the line number in front of each line
 o.relativenumber = false -- Show the line number relative to the line with the cursor in front of each line.
 o.clipboard = "unnamedplus" -- uses the clipboard register for all operations except yank.
-o.syntax = "on" -- When this option is set, the syntax with this name is loaded.
 o.autoindent = true -- Copy indent from current line when starting a new line.
+o.smartindent = true -- When on, Vim will try to be smart about indenting.
 o.cursorline = false -- Highlight the screen line of the cursor with CursorLine.
 o.expandtab = true -- In Insert mode: Use the appropriate number of spaces to insert a <Tab>.
 o.shiftwidth = 4 -- Number of spaces to use for each step of (auto)indent.
@@ -45,7 +47,7 @@ o.list = true -- Show whitespace characters
 o.listchars = { tab = "▸ ", trail = "·" } -- Show whitespace characters
 o.encoding = 'utf-8' -- Set the encoding to UTF-8
 o.fileencoding = 'utf-8' -- Set the file encoding to UTF-8
-
+o.formatoptions:append("o") -- When on, pressing <Enter> in Insert mode will start a new line and insert the same text as the previous line.
 
 -- Status line
 -------------------------------------------------------------------------------------------------------
