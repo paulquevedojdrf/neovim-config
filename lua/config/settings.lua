@@ -100,3 +100,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.cmd([[%s/\s\+$//e]])
   end,
 })
+
+-- Register .tpp files as C++ files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "*.tpp",
+    callback = function()
+        vim.bo.filetype = "cpp"
+    end,
+})
