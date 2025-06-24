@@ -3,7 +3,6 @@ return {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
     config = function()
-      print("mason.nvim setup")
       require("mason").setup()
     end,
   },
@@ -11,37 +10,54 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
     config = function()
-      print("mason-lspconfig setup")
-      local mason_lspconfig = require("mason-lspconfig")
+      require("mason-lspconfig").setup({
+        ensure_installed = { "clangd" },
+        automatic_installation = true,
+      })
+
       local lspconfig = require("lspconfig")
+      local cmp_nvim_lsp = require("cmp_nvim_lsp")
+      local compile_commands = require("utils.compile_commands")
+
+      local capabilities = cmp_nvim_lsp.default_capabilities()
 
       local function find_root(fname)
-        print("find_root called for:", fname)
         local util = require("lspconfig.util")
         return util.root_pattern(".west")(fname)
-          or util.find_git_ancestor(fname)
-          or vim.loop.cwd()
+            or util.find_git_ancestor(fname)
+            or vim.loop.cwd()
       end
 
       local function on_attach(client, bufnr)
-        print("on_attach")
-        print("LSP attached:", client.name, "bufnr:", bufnr)
-        vim.notify("LSP attached: " .. client.name)
+        print("clangd attached to buffer", bufnr)
+        if client.name == "clangd" then
+          local root_dir = client.config.root_dir
+          local merged_file = compile_commands.get_merged_compile_commands_file(root_dir)
+          if merged_file then
+            vim.notify("Using merged compile_commands.json at " .. merged_file)
+          else
+            vim.notify("No compile_commands.json files found to merge.")
+          end
+        end
       end
 
-      mason_lspconfig.setup({
-        ensure_installed = { "clangd" },
-        handlers = {
-          function(server_name)
-            print("Setting up LSP server")
-            print("Setting up LSP server:", server_name)
-            lspconfig[server_name].setup({
-              root_dir = find_root,
-              on_attach = on_attach,
-              capabilities = vim.lsp.protocol.make_client_capabilities(),
-            })
-          end,
-        },
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+        root_dir = find_root,
+        on_attach = on_attach,
+        cmd = (function()
+            local root_dir = find_root(vim.api.nvim_buf_get_name(0))
+            local merged_file = compile_commands.get_merged_compile_commands_file(root_dir)
+            if merged_file then
+                local merged_dir = vim.fn.fnamemodify(merged_file, ":h")
+                return {
+                    "clangd",
+                    "--compile-commands-dir=" .. merged_dir,
+                }
+            else
+                return { "clangd" }
+            end
+        end)(),
       })
     end,
   },
