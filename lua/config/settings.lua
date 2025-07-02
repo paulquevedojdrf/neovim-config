@@ -108,3 +108,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
         vim.bo.filetype = "cpp"
     end,
 })
+
+-- 4 spaces for proto files --
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "proto",
+    callback = function()
+        vim.bo.shiftwidth = 4
+        vim.bo.tabstop = 4
+        vim.bo.softtabstop = 4
+        vim.bo.expandtab = true
+    end,
+})
