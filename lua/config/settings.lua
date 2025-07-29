@@ -1,7 +1,6 @@
 local global = vim.g
 local o = vim.opt
 
-vim.cmd.colorscheme('pquevedo') -- ~/.config/nvim/colors
 vim.cmd("syntax enable") -- Enable syntax highlighting
 vim.cmd("filetype plugin indent on") -- Enable file type detection and plugins
 
@@ -31,7 +30,7 @@ o.showmatch = true -- When a bracket is inserted, briefly jump to the matching o
 o.inccommand = "split" -- When nonempty, shows the effects of :substitute, :smagic, :snomagic and user commands with the :command-preview flag as you type.
 o.splitright = true
 o.splitbelow = true -- When on, splitting a window will put the new window below the current one
-o.termguicolors = false -- Disable 24-bit RGB color in the TUI
+o.termguicolors = true -- Disable 24-bit RGB color in the TUI
 o.wildmode = "longest,list,full" -- When 'wildmenu' is on, command-line completion operates in an enhanced mode.
 o.ignorecase = true -- When on, case is ignored in file names and search patterns
 o.smartcase = true -- unless the search pattern contains upper case characters. In that case, the search is case sensitive.
@@ -78,6 +77,11 @@ vim.keymap.set('i', '<C-b>', '/*************************************************
 
 -- Global renaming of text under the cursor
 vim.keymap.set('n', 'gr', [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { noremap = true, silent = false })
+
+-- \e to show error diagnostics from LSP server
+vim.keymap.set("n", "<leader>e", function()
+  vim.diagnostic.open_float(nil, { focus = false, border = "rounded" })
+end, { desc = "Show LSP error message" })
 
 -- Autocommands
 -------------------------------------------------------------------------------------------------------
