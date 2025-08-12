@@ -123,3 +123,13 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.expandtab = true
     end,
 })
+
+--- Register custom syntax highlighting for logfiles (after/syntax/logplain.vim)
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = {"*", "*.log"},
+  callback = function()
+    if vim.fn.expand("%:e") == "" or vim.fn.expand("%:e") == "log" then
+      vim.bo.filetype = "logplain"
+    end
+  end
+})
