@@ -128,7 +128,28 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   pattern = {"*", "*.log"},
   callback = function()
-    if vim.fn.expand("%:e") == "" or vim.fn.expand("%:e") == "log" then
+    -- List of filenames that should NOT be treated as logfiles
+    local exceptions = {
+      "Makefile",
+      "makefile",
+      "Dockerfile",
+      "Kconfig",
+      "CMakeLists.txt",
+    }
+    local fname = vim.fn.expand("%:t") -- filename without path
+    local ext = vim.fn.expand("%:e")   -- file extension
+
+    -- check if the file is in exceptions list
+    -- Exact match or starts with
+    local is_exception = false
+    for _, v in ipairs(exceptions) do
+      if fname == v or fname:match("^" .. v) then
+        is_exception = true
+        break
+      end
+    end
+
+    if not is_exception and (ext == "" or ext == "log") then
       vim.bo.filetype = "logplain"
     end
   end
