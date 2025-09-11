@@ -79,7 +79,7 @@ return {
     vim.keymap.set("n", "<leader>fh", builtin.help_tags,  { desc = "[F]ind [H]elp" })
     vim.keymap.set("n", "<leader>pf", project_files,          { desc = "[P]roject [F]iles (from project root)" })
     vim.keymap.set("n", "<leader>pg", live_grep_project_root, { desc = "[P]roject [G]rep (from project root)" })
-    vim.keymap.set("n", "<leader>po", grep_word_under_cursor, { desc = "[P]roject grep [O]n Cursor (from project root)" })
+    vim.keymap.set("n", "<leader>pp", grep_word_under_cursor, { desc = "[P]roject grep on Cursor (from project root)" })
   end,
 }
 
