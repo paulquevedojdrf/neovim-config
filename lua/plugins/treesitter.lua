@@ -38,6 +38,7 @@ return {
                 "dockerfile",
                 "gitignore",
                 "c",
+                "cpp",
                 "rust",
                 "make",
                 "matlab",
