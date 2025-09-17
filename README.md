@@ -26,7 +26,7 @@ Requires `ripgrep` to be installed separately
 See [Telescope Keybindings](lua/plugins/telescope.lua)
 
 Of interest:
-- `<space>po` will open a list of all matches for the word under the cursor starting from your project root directory
+- `<space>pp` will open a list of all matches for the word under the cursor starting from your project root directory
 - `<space>pf` will open a fuzzy search of all files in your project root directory
 - `<space>pg` will open a live grep session starting from your project root directory
 
