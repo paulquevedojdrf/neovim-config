@@ -34,11 +34,14 @@ If you pick a file to open from the picker list you can use `CTRL+o` to jump bac
 
 ## pyright LSP
 
-`pyright` is used as the python LSP for static analysis and code-completion (`plugins/lsp.lua`).
+`pyright` is used as the python LSP for static analysis and code-completion (`lua/plugins/lsp.lua`).
 For it to work correctly you first need to install `pyright` globally using `npm`
 - `npm install -g pyright`
 
 npm can be installed as a system package. On ubuntu use `apt install nodejs npm`
+
+To view error details error details hover over the error with your cursor and press `\e`
+- This keybinding is configured under `lua/config/settings.lua`.
 
 ## References
 
