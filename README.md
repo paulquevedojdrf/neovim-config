@@ -32,6 +32,14 @@ Of interest:
 
 If you pick a file to open from the picker list you can use `CTRL+o` to jump back to your previous buffer
 
+## pyright LSP
+
+`pyright` is used as the python LSP for static analysis and code-completion (`plugins/lsp.lua`).
+For it to work correctly you first need to install `pyright` globally using `npm`
+- `npm install -g pyright`
+
+npm can be installed as a system package. On ubuntu use `apt install nodejs npm`
+
 ## References
 
 - https://dev.to/slydragonn/ultimate-neovim-setup-guide-lazynvim-plugin-manager-23b7
