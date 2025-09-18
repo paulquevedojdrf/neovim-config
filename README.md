@@ -8,12 +8,20 @@ latest neovim ppa
 
 `:Lazy sync` to install plugins
 
+## Copilot
+
+the `Copilot` plugin adds suggestions from copilot as you type. Press `CTRL+j` to accept the suggestions.
+- [Copilot KeyBindings](https://github.com/CopilotC-Nvim/CopilotChat.nvim#key-mappings)
+
+This plugin is configured to be `lazy` loaded. To enable it first type `:Copilot`
+- Once the plugin is loaded it spawns a language-server process which can be a drain on system resources if its
+  spawned for every neovim instance opened.
+
 ## Copilot Chat
 
 `:CopilotChat` to open a split window
 - `#buffers:all` will share `a snapshot` whatever files you have open in the same window with copilot (including split windows)
 - Ask it a question then `CTRL+s` to submit the question
-- [Copilot KeyBindings](https://github.com/CopilotC-Nvim/CopilotChat.nvim#key-mappings)
 - [Copilot Context Sharing](https://github.com/CopilotC-Nvim/CopilotChat.nvim#contexts)
 
 `CTRL+j` to accept copilot inline suggestions as you are editing files
