@@ -8,6 +8,11 @@ syntax match LosFound      /.*LOS  Found.*/
 syntax match LosNotFound   /.*LOS !Found.*/
 syntax match discoverOn    /.*discoverEnb.*/
 
+syntax match LogError /.*- ERROR -.*/
+syntax match LogWarning /.*- WARNING -.*/
+syntax match LogNotice /.*- NOTICE -.*/
+syntax match LogDebug /.*- DEBUG -.*/
+
 " Highlight definitions for both 24bit and 256-color palettes
 highlight LogError      guifg=#ff5555 ctermfg=DarkRed  gui=bold  cterm=bold
 highlight LogWarning    guifg=#ffd700 ctermfg=Yellow   gui=bold  cterm=bold
