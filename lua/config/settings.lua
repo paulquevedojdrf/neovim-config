@@ -138,6 +138,7 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
     }
     local fname = vim.fn.expand("%:t") -- filename without path
     local ext = vim.fn.expand("%:e")   -- file extension
+    local is_dotfile = vim.fn.expand('%:t'):match('^%.')
 
     -- check if the file is in exceptions list
     -- Exact match or starts with
@@ -149,7 +150,7 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
       end
     end
 
-    if not is_exception and (ext == "" or ext == "log") then
+    if not is_exception and not is_dotfile and (ext == "" or ext == "log") then
       vim.bo.filetype = "logplain"
     end
   end
