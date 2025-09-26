@@ -24,7 +24,7 @@ This plugin is configured to be `lazy` loaded. To enable it first type `:Copilot
 - Ask it a question then `CTRL+s` to submit the question
 - [Copilot Context Sharing](https://github.com/CopilotC-Nvim/CopilotChat.nvim#contexts)
 
-`CTRL+j` to accept copilot inline suggestions as you are editing files
+When in the chat window in `normal` mode press `ss` to paste the text `#buffers:all` into the chat.
 
 ## Telescope
 
