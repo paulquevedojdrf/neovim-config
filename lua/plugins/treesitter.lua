@@ -11,10 +11,15 @@ return {
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
+                disable = function(lang, buf)
+                     local ft = vim.bo[buf].filetype
+                    -- Disable for CopilotChat and similar non-code buffers
+                    return ft == "copilot-chat" or ft == "copilot" or ft == "markdown" and vim.api.nvim_buf_get_name(buf):match("CopilotChat")
+                end,
             },
             indent = {
                 enable = true,
-                disable = { "cmake" },
+                disable = { "cmake", "copilot-chat" },
             },
             autotag = {
                 enable = true,
