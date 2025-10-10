@@ -56,7 +56,7 @@ local function select_compile_commands(build_dir)
   -- Priority 1b: sim/simulation files prefer 'simulation'
   if current_file:match("/sim/") or current_file:match("/simulation/") then
     for _, file in ipairs(all_files) do
-      if file:match("/simulation/") then
+      if file:match("/sim/") then
         debug_print("Simulation file detected, using simulation variant: " .. file)
         return vim.fn.fnamemodify(file, ":h")
       end
