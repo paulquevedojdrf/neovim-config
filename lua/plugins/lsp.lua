@@ -38,14 +38,7 @@ return {
       local compile_commands = require("extras.compile_commands")
       local compile_commands_dir = compile_commands.get_compile_commands_dir()
 
-      --[[
-      local compile_commands_file = compile_commands_dir .. "/compile_commands.json"
-      if vim.fn.filereadable(compile_commands_file) == 1 then
-        print("✓ Found compile_commands.json at: " .. compile_commands_file)
-      else
-        print("✗ compile_commands.json NOT found at: " .. compile_commands_file)
-      end
-      --]]
+      require("extras.tagjump").setup()
 
       -- Connect pyright to the nvim lsp client for completion
       -- pyright needs to be installed externally first via npm
