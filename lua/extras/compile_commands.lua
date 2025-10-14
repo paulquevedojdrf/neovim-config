@@ -7,6 +7,28 @@ local function debug_print(msg)
   end
 end
 
+-- Find west topdir by looking for .west folder
+-- Returns the path containing .west folder, or nil if not found
+local function find_west_topdir()
+  local current_dir = vim.fn.getcwd()
+  local home_dir = vim.fn.expand("~")
+
+  while current_dir ~= home_dir and current_dir ~= "/" do
+    local west_dir = current_dir .. "/.west"
+
+    -- Check if .west directory exists
+    local stat = vim.loop.fs_stat(west_dir)
+    if stat and stat.type == "directory" then
+      return current_dir
+    end
+
+    -- Move up one directory
+    current_dir = vim.fn.fnamemodify(current_dir, ":h")
+  end
+
+  return nil
+end
+
 -- Function to find all compile_commands.json files under build directory
 local function find_all_compile_commands(build_dir)
   local files = {}
@@ -89,17 +111,13 @@ local function _get_compile_commands_dir()
   debug_print("Current file: " .. vim.api.nvim_buf_get_name(0))
 
   -- Try west topdir first
-  local west_handle = io.popen("west topdir 2>/dev/null")
-  if west_handle then
-    local west_topdir = west_handle:read("*a"):gsub("\n", "")
-    west_handle:close()
+  local west_topdir = find_west_topdir()
 
-    if west_topdir and west_topdir ~= "" then
-      local west_build_dir = west_topdir .. "/build"
-      debug_print("West topdir found: " .. west_topdir)
-      if vim.fn.isdirectory(west_build_dir) == 1 then
-        return select_compile_commands(west_build_dir)
-      end
+  if west_topdir and west_topdir ~= "" then
+    local west_build_dir = west_topdir .. "/build"
+    debug_print("West topdir found: " .. west_topdir)
+    if vim.fn.isdirectory(west_build_dir) == 1 then
+    return select_compile_commands(west_build_dir)
     end
   end
 
