@@ -117,7 +117,7 @@ local function _get_compile_commands_dir()
     local west_build_dir = west_topdir .. "/build"
     debug_print("West topdir found: " .. west_topdir)
     if vim.fn.isdirectory(west_build_dir) == 1 then
-    return select_compile_commands(west_build_dir)
+      return select_compile_commands(west_build_dir)
     end
   end
 
@@ -152,7 +152,7 @@ function M.get_compile_commands_dir()
   local compile_commands_file = compile_commands_dir .. "/compile_commands.json"
 
   if vim.fn.filereadable(compile_commands_file) == 1 then
-    debug_print("✓ Found compile_commands.json at: " .. compile_commands_file)
+    print("✓ Found compile_commands.json at: " .. compile_commands_file)
   else
     debug_print("✗ compile_commands.json NOT found at: " .. compile_commands_file)
   end
