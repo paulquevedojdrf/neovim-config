@@ -20,11 +20,11 @@ This plugin is configured to be `lazy` loaded. To enable it first type `:Copilot
 ## Copilot Chat
 
 `:CopilotChat` to open a split window
-- `#buffers:all` will share `a snapshot` whatever files you have open in the same window with copilot (including split windows)
+- `#buffer:active` will share `a snapshot` whatever files you have open in the same window with copilot (including split windows)
 - Ask it a question then `CTRL+s` to submit the question
 - [Copilot Context Sharing](https://github.com/CopilotC-Nvim/CopilotChat.nvim#contexts)
 
-When in the chat window in `normal` mode press `ss` to paste the text `#buffers:all` into the chat.
+When in the chat window in `normal` mode press `ss` to paste the text `#buffer:active` into the chat.
 
 ## Telescope
 
