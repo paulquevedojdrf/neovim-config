@@ -12,8 +12,8 @@ return {
     },
     build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
-        -- model = 'gpt-4.1', -- AI model to use
-        model = 'claude-sonnet-4',
+        model = 'gpt-4.1', -- AI model to use
+        -- model = 'claude-sonnet-4',
         temperature = 0.1, -- Lower = focused, higher = creative
         chat_autocomplete = false,
 
@@ -45,7 +45,7 @@ return {
                 callback = function()
                     local copilot = require("CopilotChat")
 
-                    local text = "#buffer:active"
+                    local text = "#buffer:listed"
                     local row,col = unpack(vim.api.nvim_win_get_cursor(copilot.chat.winnr))
                     vim.api.nvim_buf_set_lines(copilot.chat.bufnr, row-1, row, false, {text,""})
                     vim.api.nvim_win_set_cursor(copilot.chat.winnr, {row+1, col})
