@@ -51,7 +51,11 @@ return {
         vim.lsp.config('clangd', {
           capabilities = capabilities,
           filetypes = { "c", "cpp" },
-          cmd = { "clangd", "--compile-commands-dir=" .. compile_commands_dir },
+          cmd = {
+            "clangd",
+            "--header-insertion=never",
+            "--compile-commands-dir=" .. compile_commands_dir
+          },
         })
         vim.lsp.enable('pyright')
         vim.lsp.enable('clangd')
