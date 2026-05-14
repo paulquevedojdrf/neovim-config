@@ -42,7 +42,8 @@ return {
                          "Ensure at least 80% code coverage\n" ..
                          "Tests should be written in a Given, When, Then structure with these comments written inline for each test case.\n" ..
                          "All comments should be C-Style /* */\n" ..
-                         "Add a comment block for each test case the briefly describes what is being tested\n"
+                         "Add a comment block for each test case the briefly describes what is being tested\n" ..
+                         "Line lengths should not exceed 120 characters\n"
 
             }
         },
