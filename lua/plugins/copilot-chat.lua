@@ -32,15 +32,18 @@ return {
                          "Write unit-tests for this code using the unittest framework\n" ..
                          "Ensure at least 80% code coverage\n" ..
                          "Put tests into test fixture classes subclassed from unittest.TestCase.\n" ..
-                         "Tests should be written in a Given, When, Then structure\n" ..
-                         "Use the paramaterized decorator to consolidate similair test cases\n" ..
+                         "Tests should be written in a Given, When, Then structure. There should be a comment for each section in the test body\n" ..
+                         "Use the paramaterized decorator to consolidate similair test cases provided the test parameters are kept short and simple\n" ..
                          "Any tests that require file IO should use tempfile\n"
             },
             GTest = {
                 prompt = "#buffer:active\n" ..
                          "Write unit-tests for this code using the googletest framework\n" ..
                          "Ensure at least 80% code coverage\n" ..
-                         "Tests should be written in a Given, When, Then structure\n"
+                         "Tests should be written in a Given, When, Then structure with these comments written inline for each test case.\n" ..
+                         "All comments should be C-Style /* */\n" ..
+                         "Add a comment block for each test case the briefly describes what is being tested\n"
+
             }
         },
         mappings = {
