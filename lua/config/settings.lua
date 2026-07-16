@@ -75,6 +75,12 @@ vim.keymap.set('i', '<C-l>', '/*************************************************
 -- Insert a block header comment
 vim.keymap.set('i', '<C-b>', '/*******************************************************************************\n\x0d\x08\x08\x08 *\n\x08\x08\x08 *******************************************************************************/', { noremap = true })
 
+-- Fold lines matching last search pattern
+vim.keymap.set('n', '\\z', ":setlocal foldexpr=(getline(v:lnum)=~@/)?1:0 foldmethod=expr foldlevel=0 foldcolumn=2 foldminlines=0 foldtext=''<CR><CR>", { noremap = true, silent = true })
+
+-- Fold lines NOT matching last search pattern
+vim.keymap.set('n', '\\Z', ":setlocal foldexpr=(getline(v:lnum)=~@/)?0:1 foldmethod=expr foldlevel=0 foldcolumn=2 foldminlines=0 foldtext=''<CR><CR>", { noremap = true, silent = true })
+
 -- Global renaming of text under the cursor
 vim.keymap.set('n', 'gr', [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { noremap = true, silent = false })
 
