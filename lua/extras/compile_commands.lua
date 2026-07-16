@@ -75,7 +75,16 @@ local function select_compile_commands(build_dir)
     end
   end
 
-  -- Priority 1b: sim/simulation files prefer 'simulation'
+  -- Priority 2: prefer 'DEBUG'
+  for _, file in ipairs(all_files) do
+    if file:match("/DEBUG/") then
+      debug_print("Using DEBUG variant: " .. file)
+      return vim.fn.fnamemodify(file, ":h")
+    end
+  end
+
+
+  -- Priority 3: sim/simulation files prefer 'simulation'
   if current_file:match("/sim/") or current_file:match("/simulation/") then
     for _, file in ipairs(all_files) do
       if file:match("/sim/") then
@@ -85,18 +94,10 @@ local function select_compile_commands(build_dir)
     end
   end
 
-  -- Priority 2: prefer 'cppcheck'
+  -- Priority 4: prefer 'cppcheck'
   for _, file in ipairs(all_files) do
     if file:match("/cppcheck/") then
       debug_print("Using cppcheck variant: " .. file)
-      return vim.fn.fnamemodify(file, ":h")
-    end
-  end
-
-  -- Priority 3: prefer 'DEBUG'
-  for _, file in ipairs(all_files) do
-    if file:match("/DEBUG/") then
-      debug_print("Using DEBUG variant: " .. file)
       return vim.fn.fnamemodify(file, ":h")
     end
   end
