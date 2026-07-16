@@ -12,8 +12,7 @@ return {
     },
     build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
-        model = 'gpt-4.1', -- AI model to use
-        -- model = 'claude-sonnet-4',
+        model = 'claude-sonnet-4.6',
         temperature = 0.1, -- Lower = focused, higher = creative
         chat_autocomplete = false,
 
